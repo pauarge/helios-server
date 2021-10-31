@@ -271,10 +271,9 @@ logging.basicConfig(
 )
 
 # set up celery
-CELERY_BROKER_URL = get_from_env('REDIS_URL', 'amqp://localhost')
+CELERY_BROKER_URL = get_from_env('REDIS_TLS_URL', 'amqp://localhost')
 if TESTING:
     CELERY_TASK_ALWAYS_EAGER = True
-#database_url = DATABASES['default']
 
 # Rollbar Error Logging
 ROLLBAR_ACCESS_TOKEN = get_from_env('ROLLBAR_ACCESS_TOKEN', None)
