@@ -56,10 +56,6 @@ def get_voter(request, user, election):
     voter_login_id = request.headers.get('X-helios-voter')
     voter_password = request.headers.get('X-helios-voter-password')
 
-    if (not voter_login_id or not voter_password) and request.method == 'POST':
-      voter_login_id = request.POST.get('helios_voter')
-      voter_password = request.POST.get('helios_voter_password')
-
     if voter_login_id and voter_password:
       voter = Voter.objects.get(election=election, voter_login_id=voter_login_id, voter_password=voter_password)
       request.session['CURRENT_VOTER_ID'] = voter.id
