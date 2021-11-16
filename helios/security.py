@@ -57,8 +57,11 @@ def get_voter(request, user, election):
     voter_password = request.headers.get('X-helios-voter-password')
 
     if voter_login_id and voter_password:
-      voter = Voter.objects.get(election=election, voter_login_id=voter_login_id, voter_password=voter_password)
-      request.session['CURRENT_VOTER_ID'] = voter.id
+      try:
+        voter = Voter.objects.get(election=election, voter_login_id=voter_login_id, voter_password=voter_password)
+        request.session['CURRENT_VOTER_ID'] = voter.id
+      except Voter.DoesNotExist:
+        pass
 
   return voter
 
