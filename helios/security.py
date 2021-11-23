@@ -51,7 +51,6 @@ def get_voter(request, user, election):
   if not voter and user:
     voter = Voter.get_by_election_and_user(election, user)
 
-  # Custom for helios-desktop
   if not voter:
     voter_login_id = request.headers.get('X-helios-voter')
     voter_password = request.headers.get('X-helios-voter-password')
