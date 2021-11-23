@@ -727,7 +727,6 @@ def one_election_cast_confirm(request, election):
         'bad_voter_login': bad_voter_login})
       
   if request.method == "POST":
-
     # voting has not started or has ended
     if (not election.voting_has_started()) or election.voting_has_stopped():
       return HttpResponseRedirect(settings.URL_HOST)
