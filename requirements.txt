@@ -1,5 +1,5 @@
 Django==2.2.25
-django_webtest>=1.9.8
+django_webtest==1.9.8
 
 gunicorn==20.1.0
 
