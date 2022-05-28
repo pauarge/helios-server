@@ -13,9 +13,9 @@
 <body>
 <div id="wrapper">
 <div id="banner" class="edge">
-    <div class="box"></div>
-    <div class="box"><span>Helios Voting Booth</span></div>
-    <div class="box"><span><a href="javascript:BOOTH.exit();">exit</a></span></div>
+  <div style="text-align:center; width: 100%;">Helios Voting Booth
+      <div style="float: right; margin-right: 10px; font-size: 0.8em;"><span><a href="javascript:BOOTH.exit();">exit</a></span></div>
+  </div>
 </div>
 <div id="content">
 
@@ -192,7 +192,7 @@ BOOTH.show = function(el) {
 };
 
 BOOTH.show_election = function() {
-  BOOTH.show($('#election_div')).processTemplate({'election' : BOOTH.election});
+  BOOTH.show($('#election_div')).processTemplate({'election' : BOOTH.election, 'election_metadata': BOOTH.election_metadata});
 };
 
 BOOTH.launch_async_encryption_answer = function(question_num) {
@@ -332,6 +332,9 @@ BOOTH.click_checkbox = function(question_num, answer_num, checked_p) {
        checkbox.disabled = false;
      });
      $('#warning_box').html("");
+     if (BOOTH.election.questions[question_num].max != null && (BOOTH.ballot.answers[question_num].length < BOOTH.election.questions[question_num].max)) {
+        $('#warning_box').html("You may select up to " + BOOTH.election.questions[question_num].max + " choices total.");
+     }
   }
 };
 
@@ -570,7 +573,7 @@ BOOTH.cast_ballot = function() {
 };
 
 BOOTH.show_receipt = function() {
-    UTILS.open_window_with_content("Your smart ballot tracker for " + BOOTH.election.name + ": " + BOOTH.encrypted_ballot_hash);
+    UTILS.open_window_with_content("Your ballot tracker for " + BOOTH.election.name + ": " + BOOTH.encrypted_ballot_hash);
 };
 
 BOOTH.do_done = function() {
