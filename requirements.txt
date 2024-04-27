@@ -1,5 +1,9 @@
 Django==2.2.28
+<<<<<<< HEAD
+django_webtest>=1.9.7
+=======
 django_webtest>=1.9.8
+>>>>>>> upstream/master
 
 gunicorn==22.0.0
 
